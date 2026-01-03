@@ -1,0 +1,46 @@
+[target]
+domains = ["y1.foxhui.cn", "y2.foxhui.cn"]
+format = "pem"
+cert_file = "fullchain.pem"
+key_file = "privkey.pem"
+renew_before_days = 30
+auto_backup = true
+#pre_hook = "systemctl status nginx"
+#post_hook = "systemctl reload nginx"
+log_level = "info"
+
+[ca]
+type = "letsencrypt"
+account = "your@163.com"
+account_token = "account_token.json"
+
+[challenge]
+type = "dns01"
+
+[challenge.http01]
+webroot = "F:/webroot"
+
+[challenge.dns01]
+provider = "ali"
+access_key_id = "${ALI_ACCESS_KEY_ID}"
+access_key_secret = "${ALI_ACCESS_KEY_SECRET}"
+extra_param1 = "product_id"
+check_resolver = "1.1.1.1"
+
+[notice]
+enabled = true
+level = "low"
+
+[notice.webhook]
+provider = "dingtalk"
+url = "${DINGTALK_HOOK}"
+extra_param1 = "ROBOT"
+
+[notice.email]
+smtp = "smtp.163.com"
+smtp_port = 465
+username = "${SMTP_USERNAME}"
+password = "${SMTP_PASSWORD}"
+from = "hwpok@163.com"
+to = ["hwpok@qq.com"]
+subject = "Certificate Auto-Renewal Notification"

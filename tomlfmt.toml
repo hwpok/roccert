@@ -1,0 +1,32 @@
+# 定义整体表格的排序
+table_order = [
+    # 项目自身定义
+    "package",
+    "[[bin]]",
+    "[lib]",
+
+    # 依赖与特性
+    "dependencies",
+    "dev-dependencies",
+    "build-dependencies",
+    "features",
+    "target",
+
+    # 高级/工作区配置
+    "[workspace]",
+    "[patch]",
+    "[replace]",
+    "[profile]",
+]
+
+# 定义package表格字段顺序
+package_order = [
+    "name",
+    "version",
+    "edition",
+    "description",
+    "authors",
+    "license",
+]
+
+grouped = true

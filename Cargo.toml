@@ -1,0 +1,73 @@
+[package]
+name = "roc-cert"
+authors = ["HuiWanpeng<hwpok@163.com>"]
+description = "A Rust-based CLI tool for automatic SSL certificate renewal"
+repository = "https://github.com/hwpok/roccert"
+license = "MIT"
+edition = "2024"
+version = "0.1.0"
+
+[[bin]]
+path = "src/main.rs" 
+name = "roccert"
+
+[dependencies]
+anyhow = { version = "1.0.100"}
+async-trait = "0.1.89"
+base64 = "0.22.1"
+chrono = "0.4"
+clap = { version = "4.5.53", features = ["derive"] }
+command-group = { version = "5.0.1", features = ["with-tokio"] }
+dirs = "6.0.0"
+email_address = "0.2.9"
+hex = "0.4"
+hmac = "0.12"
+instant-acme = { version = "0.8.4", features = ["hyper-rustls"] } 
+lettre = {  version = "0.11",  default-features = false,  features = [
+   "rustls-tls", 
+   "builder",     
+   "smtp-transport" 
+ ]}
+log = "0.4.29"
+pem = "3.0.6"
+psl = "2.1.174"
+rcgen = { version = "0.14.6", features = ["crypto", "pem", "ring", "zeroize"] }
+regex = "1.12.2"
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json"] }
+rustls = { version = "0.23", features = ["ring"] }
+serde = "1.0.228"
+serde_json = "1.0.147"
+sha1 = "0.10"
+sha2 = "0.10.9"
+simple_logger = "5.1.0"
+strum = { version = "0.27.2", features = ["derive"] }
+thiserror = "2.0.17"
+tokio = { version = "1.0", features = ["macros", "rt", "process", "time"] }
+toml = "0.9.10"
+trust-dns-resolver = "0.23.2"
+url = "2.5.7"
+x509-parser = "0.18.0"
+
+[dev-dependencies]
+dotenvy = "0.15.7"
+test-log = "0.2.19"
+
+[profile.dev]
+opt-level = 0
+debug = true
+split-debuginfo = "packed"
+
+[profile.test]
+panic = "unwind" 
+opt-level = 0
+debug = 2
+
+[profile.release]
+opt-level = 'z'
+debug = false
+panic = 'abort'
+strip = true
+codegen-units = 1
+lto = "fat"
+incremental = false
+overflow-checks = false
