@@ -7,14 +7,15 @@ Roccert (named after the Roc, a giant bird from Middle Eastern mythology, also k
 Roccert solves HTTPS certificate management in the most intuitive way—10 minutes of setup for a permanent, hands-off solution.
 
 ```
-roccert docs -l en  # Fetch the English documentation to learn the basic usage
-roccert init        # Generate the config.toml configuration file required for the HTTP-01 challenge
-roccert test        # Verify that the configuration is valid and test the process
-roccert new         # Request a new certificate based on the configuration
-roccert show -t     # View and verify the validity of the issued certificate
+roccert docs -l en          # Fetch the English documentation to learn the basic usage
+roccert init -i dns01       # Generate the config.toml configuration file required for the DNS-01 challenge
+roccert test                # Verify that the configuration is valid and test the process
+roccert show -t             # View and verify the validity of the issued certificate
+roccert new                 # Request a new certificate based on the configuration
+roccert show                # View and verify the validity of the issued certificate
 
 # Add a cron job for scheduled automatic renewal
-5 21 * * * roccert renew /alice/roccert/config.toml >> /var/log/roccert.log 2>&1
+5 9 * * * /usr/local/share/roccert/roccert renew /usr/local/share/roccert/config.toml > /usr/local/share/roccert/roccert.log 2>&1
 
 ```
 

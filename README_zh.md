@@ -7,14 +7,15 @@ Roccert（取名源自中东传说中的巨鸟 Roc, 译作大鹏）是一款基�
 Roccert 以最符合直觉的方式解决 HTTPS 证书管理问题, 10分钟的投入, 换来一劳永逸.
 
 ```
-roccert docs -l en  # 获取英文文档，掌握基本用法
-roccert init        # 生成 HTTP-01 挑战所需的 config.toml 配置文件
-roccert test        # 验证配置是否有效, 测试流程
-roccert new         # 根据配置申请新证书
-roccert show -t     # 查看并验证已签发证书的有效性
+roccert docs -l zh      # 获取英文文档，掌握基本用法
+roccert init -i dns01   # 生成 DNS-01 挑战所需的 config.toml 配置文件
+roccert test            # 验证配置是否有效, 测试流程
+roccert show -t         # 查看并验证已签发证书的有效性
+roccert new             # 根据配置申请新证书
+roccert show            # 查看并验证已签发证书的有效性
 
 # Cron 任务加入定时调度，实现自动续期
-5 21 * * * roccert renew /alice/roccert/config.toml >> /var/log/roccert.log 2>&1
+5 9 * * * /usr/local/share/roccert/roccert renew /usr/local/share/roccert/config.toml > /usr/local/share/roccert/roccert.log 2>&1
 
 ```
 

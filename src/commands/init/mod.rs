@@ -89,7 +89,8 @@ access_key_secret = ""
 
 #[notice.webhook]
 #provider = "weico"
-#url = """#
+#url = ""
+#extra_param1="ROBOT""#
         .to_string()
 }
 
@@ -130,6 +131,7 @@ level = "low"
 [notice.webhook]
 provider = "slack"
 url = ""
+#extra_param1="ROBOT"
 
 [notice.email]
 smtp = "smtp.163.com"
